@@ -129,6 +129,8 @@ class PodmanMachineCommander:
         machine_jsons = self._call_json("list")
         if not isinstance(machine_jsons, list):
             raise ValueError("Unexpected output from command", machine_jsons)
+        if not machine_jsons:
+            return {}
 
         # `podman machine list` has different units for disk_size, memory, etc.
         # `podman machine inspect` has the information we need
