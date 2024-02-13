@@ -242,7 +242,7 @@ def main(
         logger.info("Starting: %s", requested_active)
         commander.start(requested_active)
 
-    logger.info("%s is active and podman is ready to be used", active_machine)
+    logger.info("%s is active and podman is ready to be used", requested_active)
 
 
 def camel2snake(camel: str) -> str:
