@@ -119,10 +119,13 @@ class PodmanMachineCommander:
             [],
         )
 
-    def get_active_machine_name(self) -> str:
+    def get_active_machine_name(self) -> Optional[str]:
         """Name of the machine that is currently running"""
         output_json = self._call_json("info")
-        return output_json.get("Host", {}).get("CurrentMachine")
+        host = output_json.get("Host", {})
+        if host.get("MachineState", "") == "Running":
+            return host.get("CurrentMachine")
+        return None
 
     def list(self) -> Dict[str, Machine]:
         """Get all machines known to podman"""
