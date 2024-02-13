@@ -220,7 +220,8 @@ def main(
     for new_machine in diffs.new:
         logger.info("Adding machine: %s. This may take some time...", new_machine.name)
         commander.add(new_machine)
-    # Init the default machine if it's not
+        logger.info("Configuring new machine: %s", new_machine.name)
+        commander.update(new_machine)
 
     # Delete old ones
     for removed_machine in diffs.removed:
